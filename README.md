@@ -1,0 +1,2 @@
+# Configs
+vim, tmux, bash
