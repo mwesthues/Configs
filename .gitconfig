@@ -1,0 +1,35 @@
+[user]
+	name = westhues
+	email = matthias.westhues@uni-hohenheim.de
+
+[diff]
+	tool = vimdiff
+
+[branch]
+	autosetuprebase = always
+
+[color]
+	ui = true
+	status = auto
+	branch = auto
+
+[core]
+	editor = vim
+	excludesfile = /home/westhues/.gitignore
+
+[merge]
+	tool = splice
+
+[mergetool "splice"]
+	cmd = "gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+	trustExitCode = true
+
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	sortdiff = !sh -c 'git diff "$@" | grep "^[+-]" | sort --key=1.2 | uniq -u -s1'
+	edit-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; vim `f`"
+	add-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`"
